@@ -3,7 +3,7 @@ package com.cooksys.ftd.assignments.collections.model;
 import java.util.List;
 
 /**
- * Parent interface for both {@code Manager} and {@code Employee}.
+ * Parent interface for both {@code Manager} and {@code Worker}.
  * <br><br>
  * It defines several getters and a utility method that must be implemented by its subclasses.
  * <br><br>
