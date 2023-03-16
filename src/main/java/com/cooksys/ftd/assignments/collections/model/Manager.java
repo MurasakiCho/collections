@@ -1,8 +1,8 @@
 package com.cooksys.ftd.assignments.collections.model;
 
-import com.cooksys.ftd.assignments.collections.util.MissingImplementationException;
-
 import java.util.List;
+
+import com.cooksys.ftd.assignments.collections.util.MissingImplementationException;
 
 /**
  * TODO: Implement this class

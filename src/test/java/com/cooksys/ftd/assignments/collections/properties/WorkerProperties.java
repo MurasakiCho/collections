@@ -1,18 +1,22 @@
 package com.cooksys.ftd.assignments.collections.properties;
 
-import com.cooksys.ftd.assignments.collections.generators.GenManager;
-import com.cooksys.ftd.assignments.collections.generators.GenWorker;
-import com.cooksys.ftd.assignments.collections.model.Employee;
-import com.cooksys.ftd.assignments.collections.model.Manager;
-import com.cooksys.ftd.assignments.collections.model.Worker;
-import com.pholser.junit.quickcheck.Property;
-import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
-import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+
+import com.cooksys.ftd.assignments.collections.generators.GenManager;
+import com.cooksys.ftd.assignments.collections.generators.GenWorker;
+import com.cooksys.ftd.assignments.collections.model.Manager;
+import com.cooksys.ftd.assignments.collections.model.Worker;
+import com.pholser.junit.quickcheck.Property;
+import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 
 /**
  * Test suite that verifies the essential properties of the {@code Worker} class. Students may run this class by

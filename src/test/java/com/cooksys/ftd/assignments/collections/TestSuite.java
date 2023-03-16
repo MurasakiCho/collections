@@ -1,10 +1,11 @@
 package com.cooksys.ftd.assignments.collections;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
 import com.cooksys.ftd.assignments.collections.properties.ManagerProperties;
 import com.cooksys.ftd.assignments.collections.properties.OrgChartProperties;
 import com.cooksys.ftd.assignments.collections.properties.WorkerProperties;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 /**
  * TODO: Students should run this test suite to verify that their code passes the included tests.

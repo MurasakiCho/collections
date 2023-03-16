@@ -1,10 +1,9 @@
 package com.cooksys.ftd.assignments.collections.model;
 
-import com.cooksys.ftd.assignments.collections.model.Employee;
-import com.cooksys.ftd.assignments.collections.model.Manager;
-import com.cooksys.ftd.assignments.collections.util.MissingImplementationException;
+import java.util.Map;
+import java.util.Set;
 
-import java.util.*;
+import com.cooksys.ftd.assignments.collections.util.MissingImplementationException;
 
 public class OrgChart {
 
