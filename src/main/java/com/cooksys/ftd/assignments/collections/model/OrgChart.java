@@ -25,6 +25,9 @@ public class OrgChart {
      *  If the given {@code Employee} has a {@code Manager} and that {@code Manager} is not part of the
      *  {@code OrgChart} yet, add that {@code Manager} first and then add the given {@code Employee}, and return true.
      *  <br><br>
+     *  If the given {@code Employee} has a {@code Manager} and the {@code Manager} is part of the {@code OrgChart},
+     *  add the given {@code Employee} and return true.
+     *  <br><br>
      *  If the given {@code Employee} has no {@code Manager}, but is a {@code Manager} itself, add it to the
      *  {@code OrgChart} and return true.
      *  <br><br>
