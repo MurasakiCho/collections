@@ -74,8 +74,13 @@ public class OrgChartProperties {
             assertTrue("OrgChart#add() returned false when called with an Employee", orgChart.addEmployee(employee));
             assertTrue("OrgChart#has() returned false when called with the Employee that was just added",
                     orgChart.hasEmployee(employee));
+            System.out.println("current: " + employee.getName()); //current loop employee
+            orgChart.printEmployees();
             while (employee.hasManager()) {
+                //this line sometimes changes the loop's employee to its manager
+                //then the "assertTrue" returns false when that manager's manager isn't in the directory...
                 employee = employee.getManager();
+                System.out.println("while loop: " + employee.getName());
                 assertTrue("OrgChart#has() returned false when called with a manager of the Employee that was just added",
                         orgChart.hasEmployee(employee));
             }

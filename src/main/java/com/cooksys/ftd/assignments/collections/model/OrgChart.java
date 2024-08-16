@@ -1,7 +1,6 @@
 package com.cooksys.ftd.assignments.collections.model;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.cooksys.ftd.assignments.collections.util.MissingImplementationException;
 
@@ -11,6 +10,8 @@ public class OrgChart {
     //  Add those fields here. Consider how you want to store the data, and which collection types to use to make
     //  implementing the other methods as easy as possible. There are several different ways to approach this problem, so
     //  experiment and don't be afraid to change how you're storing your data if it's not working out!
+
+    private ArrayList<Employee> directory = new ArrayList<>();
 
     /**
      * TODO: Implement this method
@@ -38,7 +39,37 @@ public class OrgChart {
      * @return true if the {@code Employee} was added successfully, false otherwise
      */
     public boolean addEmployee(Employee employee) {
-        throw new MissingImplementationException();
+        //do not add null employees
+        if(employee == null) {
+            return false;
+        }
+        //false if employee already in directory
+        if(hasEmployee(employee)){
+            return false;
+        }
+        //true if employee has manager that isn't in directory
+        if(employee.hasManager() && !hasEmployee(employee.getManager())){
+            directory.add(employee.getManager());
+            directory.add(employee);
+            return true;
+        }
+        //true if employee has manager that is already in directory
+        if(employee.hasManager() && hasEmployee(employee.getManager())){
+            directory.add(employee);
+            return true;
+        }
+        //true if employee has no manager but is itself a manager
+        if(!employee.hasManager() && employee instanceof Manager){
+            directory.add(employee);
+            return true;
+        }
+        //false if employee has no manager and is not a manager
+        if(!employee.hasManager() && !(employee instanceof Manager)){
+            return false;
+        }
+
+        //all other conditions are false
+        return false;
     }
 
     /**
@@ -50,7 +81,11 @@ public class OrgChart {
      * @return true if the {@code Employee} has been added to the {@code OrgChart}, false otherwise
      */
     public boolean hasEmployee(Employee employee) {
-        throw new MissingImplementationException();
+        if(directory.isEmpty()){
+            return false;
+        }
+
+        return directory.contains(employee);
     }
 
     /**
@@ -64,7 +99,7 @@ public class OrgChart {
      *         been added to the {@code OrgChart}
      */
     public Set<Employee> getAllEmployees() {
-        throw new MissingImplementationException();
+        return new HashSet<>(directory);
     }
 
     /**
@@ -78,7 +113,13 @@ public class OrgChart {
      *         have been added to the {@code OrgChart}
      */
     public Set<Manager> getAllManagers() {
-        throw new MissingImplementationException();
+        Set<Manager> managers = new HashSet<>();
+        for(Employee employee : directory){
+            if(employee instanceof Manager){
+                managers.add((Manager) employee);
+            }
+        }
+        return managers;
     }
 
     /**
@@ -99,7 +140,20 @@ public class OrgChart {
      *         or if there are no subordinates for the given {@code Manager}
      */
     public Set<Employee> getDirectSubordinates(Manager manager) {
-        throw new MissingImplementationException();
+        Set<Employee> subordinates = new HashSet<>();
+
+        for(Employee employee : directory){
+            if(employee.getManager() == manager){
+                subordinates.add(employee);
+            }
+        }
+
+        /*for(Employee employee : subordinates){
+            if(employee instanceof Manager){
+                subordinates.addAll(getDirectSubordinates((Manager) employee));
+            }
+        }*/
+        return subordinates;
     }
 
     /**
@@ -115,11 +169,23 @@ public class OrgChart {
      *  either in its keys or values. An empty {@code Map} should be returned if the {@code OrgChart} is empty.
      *
      * @return a map in which the keys represent the parent {@code Manager}s in the
-     *         {@code OrgChart}, and the each value is a set of the direct subordinates of the
+     *         {@code OrgChart}, and each value is a set of the direct subordinates of the
      *         associated {@code Manager}, or an empty map if the {@code OrgChart} is empty.
      */
     public Map<Manager, Set<Employee>> getFullHierarchy() {
-        throw new MissingImplementationException();
+        HashMap<Manager, Set<Employee>> hierarchy = new HashMap<>();
+        for(Employee employee : directory){
+            if(employee instanceof Manager){
+                hierarchy.put((Manager)employee, getDirectSubordinates((Manager) employee));
+            }
+        }
+        return hierarchy;
+    }
+
+    public void printEmployees(){
+        for(Employee employee : directory){
+            System.out.println(employee.getName());
+        }
     }
 
 }
